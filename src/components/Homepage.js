@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Navbar from "./Navbar";
+import { Outlet } from "react-router-dom";
 
 const Homepage = () => {
+    const [test, setTest] = useState("");
+
+    useEffect(() => {
+        setTest("The test state");
+        console.log(test);
+    }, []);
+
     return (
         <div>
-            <h1>React is up and running on the homepage!</h1>
+            <div>
+                <h1>Marketplace App</h1>
+                <Navbar />
+            </div>
+            <Outlet context={test}/>
         </div>
     )
 };
