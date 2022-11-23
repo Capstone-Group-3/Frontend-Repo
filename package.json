@@ -28,5 +28,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Capstone-Group-3/Frontend-Repo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Capstone-Group-3/Frontend-Repo/issues"
+  },
+  "homepage": "https://github.com/Capstone-Group-3/Frontend-Repo#readme"
 }
