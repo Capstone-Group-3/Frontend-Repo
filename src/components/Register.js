@@ -13,6 +13,8 @@ const Register = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [newError, setNewError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
 
     async function registerUser(event) {
@@ -31,8 +33,9 @@ const Register = () => {
             })
 
             const data = await response.json();
-            console.log("The data: ", data);
             localStorage.setItem("token", data.token);
+            setNewError(data.error);
+            setSuccessMessage(data.message);
 
         } catch (error) {
             console.error
@@ -59,6 +62,14 @@ const Register = () => {
                 <button type="submit">Submit</button>
                 <br />
             </form>
+            {newError && newError.length ? 
+                    <div>
+                        <p>{newError}</p>
+                    </div>
+                : <div>
+                    <p>{successMessage}</p>
+                    <Link to="/profile">Go to profile</Link>
+                </div>}
             <p>Already have an account? <Link to="/login">Log in here</Link></p>
         </div>
     )

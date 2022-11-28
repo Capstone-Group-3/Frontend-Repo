@@ -8,6 +8,7 @@ import ErrorPage from "./components/ErrorPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import Products from "./components/Products";
 
 const appElement = document.getElementById("app");
 const root = createRoot(appElement);
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile />
-            }
+            },
+            {
+                path: "/products",
+                element: <Products />
+            },
         ]
     }
 ]);
