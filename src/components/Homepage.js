@@ -11,7 +11,7 @@ const pageContext = {
     usernameState: [username, setUsername],
     idState: [id, setId],
     productsState: [products, setProducts],
-    tokenState: currentToken
+    currentToken
 };
 
 // need a users/me route in api, or something similar that checks token against db for users and returns your data
@@ -26,13 +26,16 @@ useEffect(() => {
             })
 
             const data = await response.json();
-            setUsername(data.username);
-            setId(data.id);
+            setUsername(data.response.username);
+            setId(data.response.id);
             // also probably use this to set shopcart data? or maybe a different api call
         } catch (error) {
             console.error
         }
     }
+
+    loadProfileInfo();
+
 }, [])
 
 useEffect(() => {
@@ -45,8 +48,6 @@ useEffect(() => {
             })
             const data = await response.json();
             setProducts(data);
-
-            console.log("This is the products state: ", products);
         } catch (error) {
             console.error
         }

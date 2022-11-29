@@ -2,15 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-    // const apiRoutes = {
-    //     products: {
-    //       allProducts: "path for fetching all products",
-    //       individualProduct: "path for one product"
-    //     }
-    //   } 
-    //   const apiHostname = 'http://localhost:3030/api/'
-    //   fetch(`${apiHostname}${allProducts}`, {})
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [newError, setNewError] = useState("");
