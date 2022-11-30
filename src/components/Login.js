@@ -10,7 +10,7 @@ const Login = () => {
     async function logInUser(event) {
         event.preventDefault();
         try {
-            const response = await fetch("https://localhost:3030/api/users/login", {
+            const response = await fetch("http://localhost:3030/api/users/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -41,14 +41,14 @@ const Login = () => {
     return (
         <div id="login-container">
             <form onSubmit={logInUser}>Log In
-            <br />
-            <input type="text" value={username} onChange={updateUsername} placeholder="Username" required/>
-            <br />
-            <input type="text" value={password} onChange={updatePassword} placeholder="Password" required/>
-            <br />
-            <button>Submit</button>
-            <br/>
-            
+                <br />
+                <input type="text" value={username} onChange={updateUsername} placeholder="Your username" required/>
+                <br />
+                <input type="password" value={password} onChange={updatePassword} placeholder="Your password" required/>
+                <br />
+                <button type="submit">Submit</button>
+                <br/>
+            </form>
             {newError && newError.length ?
             <div><p>{newError}</p></div> :
             <div><p>{successMessage}</p>
@@ -57,7 +57,6 @@ const Login = () => {
             </div>}
             
             <p>Don't have an account? <Link to={"/register"}>Register here</Link></p>
-            </form>
         </div>
     )
 };
