@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [newError, setNewError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const navigate= useNavigate()
 
 
     async function registerUser(event) {
@@ -28,6 +29,9 @@ const Register = () => {
             setNewError(data.error);
             setSuccessMessage(data.message);
 
+            if(data.token.length){
+                navigate("/")
+            }
         } catch (error) {
             console.error
         }
