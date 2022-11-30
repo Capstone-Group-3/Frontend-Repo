@@ -67,9 +67,10 @@ useEffect(() => {
         <div>
             <div>
                 <h1>Marketplace App</h1>
-                <Navbar />
+                <Navbar isAdmin={isAdmin}/>
             </div>
             <Outlet context={pageContext}/>
+
         </div>
     )
 };
