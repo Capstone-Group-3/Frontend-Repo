@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import Homepage from "./Homepage";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [newError, setNewError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const navigate = useNavigate()
 
     async function logInUser(event) {
         event.preventDefault();
@@ -25,6 +27,9 @@ const Login = () => {
             setNewError(data.error);
             setSuccessMessage(data.message);
 
+            if(data.token.length){
+                navigate("/")
+            }
         } catch (error) {
             console.error
         }

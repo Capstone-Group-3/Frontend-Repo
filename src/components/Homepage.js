@@ -2,17 +2,22 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 
+
 const Homepage = () => {
 const [username, setUsername] = useState("");
 const [id, setId] = useState("");
 const [products, setProducts] = useState([]);
+const [isAdmin, setIsAdmin] = useState(false)
 const currentToken = localStorage.getItem("token");
+
 const pageContext = { 
     usernameState: [username, setUsername],
     idState: [id, setId],
     productsState: [products, setProducts],
-    currentToken
+    currentToken,
+    adminState: [isAdmin, setIsAdmin]
 };
+
 
 // need a users/me route in api, or something similar that checks token against db for users and returns your data
 useEffect(() => {
@@ -28,6 +33,7 @@ useEffect(() => {
             const data = await response.json();
             setUsername(data.response.username);
             setId(data.response.id);
+            setIsAdmin(data.response.isAdmin);
             // also probably use this to set shopcart data? or maybe a different api call
         } catch (error) {
             console.error
