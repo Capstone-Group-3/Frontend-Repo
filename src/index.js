@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./style/style.css";
+import App from "./components/App";
 import Homepage from "./components/Homepage";
 import ErrorPage from "./components/ErrorPage";
 import Login from "./components/Login";
@@ -16,12 +17,12 @@ const root = createRoot(appElement);
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Homepage />,
+        element: <App />,
         errorElement: <ErrorPage />,
         children: [
             {
-                index:true,
-                element: <div>Welcome</div>
+                index: true,
+                element: <Homepage />
             },
             {
                 path: "/login",
