@@ -17,10 +17,19 @@ const ProductDetails = () => {
     //     return id == element.id
     // });
 
+    // console.log(" find description: ", thisProduct.description)
+    // console.log("this product find func: ", thisProduct)
+
     function handleToggleProductDetailsForm () {
         setToggleProductDetailsForm (!toggleProductDetailsForm);
     }
+// if currenttoken 
+// display button to add to cart 
 
+// else if localStorage thing
+// display different button
+
+// else "message: please log in to purchase ${detailedspecificproduct.name}"
     
     useEffect(() => {
         // removed the async and await because it's not an call or anything, it's filtering through the product data which we already have
@@ -30,6 +39,8 @@ const ProductDetails = () => {
         findSpecificProduct()
         console.log("specific product: ", detailedSpecificProduct)
     }, []) 
+
+    console.log("description: ", detailedSpecificProduct.description)
 
     return (
         <div>
@@ -51,7 +62,12 @@ const ProductDetails = () => {
             <div>
                 <h3>Product Details:</h3>
                 {   // not title on detailed specific product, there's a name though 
-                    detailedSpecificProduct.title ? <p>{detailedSpecificProduct.title}</p> : <p>Untitled Product</p>
+                    detailedSpecificProduct.isActive ? 
+                    <div>
+                        <p>{detailedSpecificProduct.name}</p>
+                        <p>{detailedSpecificProduct.description}</p> 
+                        <p>{detailedSpecificProduct.price}</p>
+                    </div> : <p>Untitled Product</p>
                 }
             </div>
         </div>
