@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 
 
@@ -31,9 +32,9 @@ useEffect(() => {
             })
 
             const data = await response.json();
-            setUsername(data.response.username);
-            setId(data.response.id);
-            setIsAdmin(data.response.isAdmin);
+            setUsername(data.username);
+            setId(data.id);
+            setIsAdmin(data.isAdmin);
             // also probably use this to set shopcart data? or maybe a different api call
         } catch (error) {
             console.error
@@ -70,7 +71,7 @@ useEffect(() => {
                 <Navbar isAdmin={isAdmin}/>
             </div>
             <Outlet context={pageContext}/>
-
+            <Footer />
         </div>
     )
 };

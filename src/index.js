@@ -9,7 +9,9 @@ import ErrorPage from "./components/ErrorPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import AdminPanel from "./components/AdminPanel";
 import Products from "./components/Products";
+import ProductDetails from "./components/ProductDetails";
 
 const appElement = document.getElementById("app");
 const root = createRoot(appElement);
@@ -37,9 +39,17 @@ const router = createBrowserRouter([
                 element: <Profile />
             },
             {
+                path: "/adminpanel",
+                element: <AdminPanel />
+            },
+            {
                 path: "/products",
                 element: <Products />
             },
+            {
+                path: "/products/:id",
+                element: <ProductDetails />
+            }
         ]
     }
 ]);

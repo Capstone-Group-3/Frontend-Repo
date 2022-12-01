@@ -9,6 +9,8 @@ const Profile = () => {
     const [id, setId] = idState;
     const navigate = useNavigate();
 
+
+
     function logOutUser(event) {
         event.preventDefault();
         localStorage.removeItem("token");
@@ -16,6 +18,26 @@ const Profile = () => {
         setId("");
         navigate("/login");
     };
+
+    useEffect(() => {
+        async function loadUserOrders() {
+            try {
+                const response = await fetch ("http://localhost:3030/api/shopcart/{params here}", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${currentToken}`
+                    }
+                })
+    
+                const data = await response.json();
+            } catch (error) {
+                console.error
+            }
+        }
+    
+        loadUserOrders();
+    
+    }, [])
 
     return (
         <div>
