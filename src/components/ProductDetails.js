@@ -53,11 +53,11 @@ const ProductDetails = () => {
                 </div>
                  : null } */}
 
-            <button onClick ={handleToggleProductDetailsForm}>Product Details</button>
+            {/* <button onClick ={handleToggleProductDetailsForm}>Product Details</button>
             {   // setting products here is probably not what we want to do, because products/setproducts is what we get from our api on the homepage
-                toggleProductDetailsForm ? <ProductDetails indivProduct={detailedSpecificProduct} setProducts = {setProducts}
-                handleToggleProductDetailsForm= {handleToggleProductDetailsForm}/>: null
-            }
+                toggleProductDetailsForm ? <ProductDetails indivProduct={detailedSpecificProduct} Products = {setProducts}
+                handleToggleProductDetailsForm= {handleToggleProductDetailsForm}/>: null */}
+            {/* } */}
 
             <div>
                 <h3>Product Details:</h3>
@@ -67,6 +67,7 @@ const ProductDetails = () => {
                         <p>{detailedSpecificProduct.name}</p>
                         <p>{detailedSpecificProduct.description}</p> 
                         <p>{detailedSpecificProduct.price}</p>
+                        <button type="AddToCart">AddToCart</button>
                     </div> : <p>Untitled Product</p>
                 }
             </div>
