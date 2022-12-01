@@ -7,7 +7,7 @@ const Profile = () => {
     const { productsState } = useOutletContext();
     const { currentToken } = useOutletContext();
     const [username, setUsername] = usernameState;
-    const [id, setId] = idState;
+    const [userId, setUserId] = idState;
     const [products, setProducts] = productsState;
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const Profile = () => {
         event.preventDefault();
         localStorage.removeItem("token");
         setUsername("");
-        setId("");
+        setUserId("");
         navigate("/login");
     };
 

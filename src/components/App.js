@@ -6,14 +6,14 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
 const [username, setUsername] = useState("");
-const [id, setId] = useState("");
+const [userId, setUserId] = useState("");
 const [products, setProducts] = useState([]);
 const [isAdmin, setIsAdmin] = useState(false)
 const currentToken = localStorage.getItem("token");
 
 const pageContext = { 
     usernameState: [username, setUsername],
-    idState: [id, setId],
+    idState: [userId, setUserId],
     productsState: [products, setProducts],
     currentToken,
     adminState: [isAdmin, setIsAdmin]
@@ -33,7 +33,7 @@ useEffect(() => {
 
             const data = await response.json();
             setUsername(data.username);
-            setId(data.id);
+            setUserId(data.id);
             setIsAdmin(data.isAdmin);
             // also probably use this to set shopcart data? or maybe a different api call
         } catch (error) {
