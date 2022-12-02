@@ -13,6 +13,13 @@ const Profile = () => {
 
     const [placedOrders, setPlacedOrders] = useState([]);
 
+    useEffect(() => {
+        function checkToken() {
+            console.log("use effect token: ", currentToken);
+        }
+        checkToken();
+    }, [])
+
     function logOutUser(event) {
         event.preventDefault();
         localStorage.removeItem("token");
@@ -25,7 +32,7 @@ const Profile = () => {
     useEffect(() => {
         async function loadUserOrders() {
             try {
-                const response = await fetch (`http://localhost:3030/api/shopcart/${id}`, {
+                const response = await fetch (`http://localhost:3030/api/shopcart/${userId}`, {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${currentToken}`
@@ -34,7 +41,6 @@ const Profile = () => {
                 const data = await response.json();
                 console.log("the order data: ", data);
                 setPlacedOrders(data);
-                console.log("order state: ", placedOrders);
             } catch (error) {
                 console.error
             }

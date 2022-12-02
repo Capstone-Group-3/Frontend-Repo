@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, useOutletContext, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
-
-    // this is new -- products state as a destructured object instead of array, because pagecontext is an object
     const { productsState } = useOutletContext();
+    const { currentToken } = useOutletContext();
+    const { idState } = useOutletContext();
     const [products, setProducts] = productsState;
+    const [userId, setUserId] = idState;
+    const [quantity, setQuantity] = useState(0);
+    const [successMessage, setSuccessMessage] = useState("");
 
     const [detailedSpecificProduct, setDetailedSpecificProduct] = useState({})
 
@@ -13,46 +16,45 @@ const ProductDetails = () => {
 
     const { id } = useParams();
 
-    // const thisProduct = products.find((element) => {
-    //     return id == element.id
-    // });
-
-    // console.log(" find description: ", thisProduct.description)
-    // console.log("this product find func: ", thisProduct)
-
-    function handleToggleProductDetailsForm () {
-        setToggleProductDetailsForm (!toggleProductDetailsForm);
-    }
-// if currenttoken 
-// display button to add to cart 
-
-// else if localStorage thing
-// display different button
-
-// else "message: please log in to purchase ${detailedspecificproduct.name}"
+    // function handleToggleProductDetailsForm () {
+    //     setToggleProductDetailsForm (!toggleProductDetailsForm);
+    // }
     
     useEffect(() => {
-        // removed the async and await because it's not an call or anything, it's filtering through the product data which we already have
         function findSpecificProduct () {
                 const [specificProduct] = products.filter((element) => element.id == id);
                 setDetailedSpecificProduct(specificProduct)};
-        findSpecificProduct()
-        console.log("specific product: ", detailedSpecificProduct)
+        findSpecificProduct();
     }, []) 
 
-    console.log("description: ", detailedSpecificProduct.description)
+    async function addProductToCart(event) {
+        event.preventDefault();
+
+        try {
+            const response = await fetch(`http://localhost:3030/api/shopcart/${userId}/add`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${currentToken}`
+                },
+                body: JSON.stringify({
+                    productId: id,
+                    quantity: quantity
+                })
+            })
+            const data = await response.json();
+            setSuccessMessage(data.message)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    function updateQuantity(event) {
+        setQuantity(event.target.value)
+    };
 
     return (
         <div>
-            {/* { thisProduct.isActive ? // extra check in case someone uses a route to go to an inactive product
-                <div>
-                    <h2>{thisProduct.name}</h2>
-                    <h3>{thisProduct.price}</h3>
-                    <h4>{thisProduct.description}</h4>
-                    <Link to="products">Browse more products</Link>
-                </div>
-                 : null } */}
-
             {/* <button onClick ={handleToggleProductDetailsForm}>Product Details</button>
             {   // setting products here is probably not what we want to do, because products/setproducts is what we get from our api on the homepage
                 toggleProductDetailsForm ? <ProductDetails indivProduct={detailedSpecificProduct} Products = {setProducts}
@@ -60,16 +62,32 @@ const ProductDetails = () => {
             {/* } */}
 
             <div>
-                <h3>Product Details:</h3>
-                {   // not title on detailed specific product, there's a name though 
-                    detailedSpecificProduct.isActive ? 
+                {  detailedSpecificProduct.isActive ? // extra check in case someone uses a route to go to an inactive product
                     <div>
                         <p>{detailedSpecificProduct.name}</p>
                         <p>{detailedSpecificProduct.description}</p> 
                         <p>{detailedSpecificProduct.price}</p>
-                        <button type="AddToCart">AddToCart</button>
-                    </div> : <p>Untitled Product</p>
-                }
+
+                    {currentToken && !!currentToken.length ? 
+                        <form onSubmit={addProductToCart}>Add to cart
+                            <select onChange={updateQuantity} required>
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                            </select>
+                            <button type="submit">Submit</button>
+                        </form>
+                    : null}
+
+                    {successMessage && !!successMessage.length ?
+                        <p>{successMessage}</p>
+                    : null }
+
+                        <Link to="/products">Browse more products</Link>
+                    </div>
+                : null }
             </div>
         </div>
     )
