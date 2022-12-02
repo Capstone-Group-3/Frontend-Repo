@@ -7,7 +7,7 @@ const ProductDetails = () => {
     const { idState } = useOutletContext();
     const [products, setProducts] = productsState;
     const [userId, setUserId] = idState;
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const [successMessage, setSuccessMessage] = useState("");
 
     const [detailedSpecificProduct, setDetailedSpecificProduct] = useState({})
