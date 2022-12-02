@@ -154,9 +154,9 @@ const AdminPanel=()=>{
             <div>
                 <h2>Give Administrative Privledges</h2>
                 <button onClick={(()=>setIsUsersToggled(!isUsersToggled))}>Show Users</button>
-                    {isUsersToggled && regUsers.map((indivUser)=>{
-                        return <form onSubmit={promoteUser}>
-                            <p>{indivUser.name}</p>
+                    {isUsersToggled && regUsers.map((indivUser, idx)=>{
+                        return <form onSubmit={promoteUser} key={idx}>
+                            <p>{indivUser.username}</p>
                             <button type="submit" value={indivUser.name}>Promote</button>
                         </form>
                     })}
