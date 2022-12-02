@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 
 const AdminPanel=()=>{
@@ -55,7 +55,8 @@ const AdminPanel=()=>{
         }
     }
 
-    async function editProduct() {
+    async function editProduct(event) {
+        event.preventDefault()
         try {
             const response=await fetch(`http://localhost:3030/api/products/${targetedProduct}`,{
                 method: "PATCH",
@@ -76,10 +77,23 @@ const AdminPanel=()=>{
         }
     }
 
-    // Unfinished
     async function makeProduct(){
+    
         try {
-            
+            const response=await fetch(`http://localhost:3030/api/products`, {
+                method: "POST",
+                headers:{
+                    "Content-Type":"application.json",
+                    "Authorization":`Bearer ${currentToken}`
+                },
+                body:JSON.stringify({
+                    name:targetName,
+                    description: targetDescription,
+                    price: targetPrice,
+                    quantity: targetQuantity
+                })
+            })
+            const data= await response.json();
         } catch (error) {
             console.error
         }
@@ -95,7 +109,8 @@ const AdminPanel=()=>{
                 }   
             })
             const data = await userGroup.json();
-            setRegUsers(data.userGroup)
+            setRegUsers(data)
+            console.log("this is the user data:", data)
         } catch (error) {
             console.error
         }}
@@ -117,6 +132,22 @@ const AdminPanel=()=>{
         await editProduct()
     }
 
+    function updateTargetName(event){
+        setTargetName(event.target.value)
+    }
+
+    function updateTargetDescription(event){
+        setTargetDescription(event.target.value)
+    }
+
+    function updateTargetPrice(event){
+        setTargetPrice(event.target.value)
+    }
+
+    function updateTargetQuantity(event){
+        setTargetQuantity(event.target.value)
+    }
+
     return (
         <div>
             {isAdmin?
@@ -132,18 +163,18 @@ const AdminPanel=()=>{
                 {/* Have a toggle that displays all nonadmin users, with a 'promote' button*/}
                 <h2>Edit Products</h2>
                 <button onClick={(()=>setIsProductsToggled(!isProductsToggled))}>Show Products</button>
-                    {isProductsToggled && products.map((indivProduct)=>{
-                        return <div>
+                    {isProductsToggled && products.map((indivProduct, idx)=>{
+                        return <div key={idx}>
                                     <p>{indivProduct.name}</p>
                                     <form onSubmit={editTargetProduct}>
                                         <label>Name</label>
-                                        <input value={targetName}></input>
+                                        <input value={targetName} onChange={updateTargetName}></input>
                                         <label>Description</label>
-                                        <input value={targetDescription}></input>
+                                        <input value={targetDescription} onChange={updateTargetDescription}></input>
                                         <label>Price</label>
-                                        <input value={targetPrice}></input>
+                                        <input value={targetPrice} onChange={updateTargetPrice}></input>
                                         <label>Quantity</label>
-                                        <input value={targetQuantity}></input>
+                                        <input value={targetQuantity} onChange={updateTargetQuantity}></input>
                                         <button type="submit" value={indivProduct.id}>Edit</button>
                                     </form>
                                     <form onSubmit={deactivateProduct}>
@@ -151,6 +182,20 @@ const AdminPanel=()=>{
                                     </form>
                                 </div>
                     })}
+                <div>
+                    <h2>Add a new Product</h2>
+                    <form onSubmit={makeProduct}>
+                        <label>Name</label>
+                        <input value={targetName} onChange={updateTargetName}></input>
+                        <label>Description</label>
+                        <input value={targetDescription} onChange={updateTargetDescription}></input>
+                        <label>Price</label>
+                        <input value={targetPrice} onChange={updateTargetPrice}></input>
+                        <label>Quantity</label>
+                        <input value={targetQuantity} onChange={updateTargetQuantity}></input>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
             :
             <div>
