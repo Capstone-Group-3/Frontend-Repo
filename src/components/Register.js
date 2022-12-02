@@ -8,6 +8,9 @@ const Register = () => {
     const [successMessage, setSuccessMessage] = useState("");
     const navigate= useNavigate()
 
+    const { loggedInState } = useOutletContext();
+    const [loggedIn, setLoggedIn] = loggedInState;
+
 
     async function registerUser(event) {
         event.preventDefault();
@@ -28,6 +31,7 @@ const Register = () => {
             localStorage.setItem("token", data.token);
             setNewError(data.error);
             setSuccessMessage(data.message);
+            setLoggedIn(true);
 
             if(data.token.length){
                 navigate("/")

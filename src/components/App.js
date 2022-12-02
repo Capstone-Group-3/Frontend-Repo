@@ -8,7 +8,8 @@ const App = () => {
 const [username, setUsername] = useState("");
 const [userId, setUserId] = useState("");
 const [products, setProducts] = useState([]);
-const [isAdmin, setIsAdmin] = useState(false)
+const [isAdmin, setIsAdmin] = useState(false);
+const [loggedIn, setLoggedIn] = useState(null);
 const currentToken = localStorage.getItem("token");
 
 const pageContext = { 
@@ -16,7 +17,8 @@ const pageContext = {
     idState: [userId, setUserId],
     productsState: [products, setProducts],
     currentToken,
-    adminState: [isAdmin, setIsAdmin]
+    adminState: [isAdmin, setIsAdmin],
+    loggedInState: [loggedIn, setLoggedIn]
 };
 
 
@@ -35,6 +37,9 @@ useEffect(() => {
             setUsername(data.username);
             setUserId(data.id);
             setIsAdmin(data.isAdmin);
+            console.log("logged in state: ", loggedIn);
+            console.log("username data: ", data.username);
+            console.log("current token: ", currentToken);
             // also probably use this to set shopcart data? or maybe a different api call
         } catch (error) {
             console.error
@@ -43,7 +48,7 @@ useEffect(() => {
 
     loadProfileInfo();
 
-}, [])
+}, [loggedIn])
 
 useEffect(() => {
     async function fetchProducts() {

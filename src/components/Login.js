@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import Homepage from "./Homepage";
 
 const Login = () => {
@@ -7,7 +7,10 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [newError, setNewError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const { loggedInState } = useOutletContext();
+    const [loggedIn, setLoggedIn] = loggedInState;
 
     async function logInUser(event) {
         event.preventDefault();
@@ -24,6 +27,7 @@ const Login = () => {
             })
             const data = await response.json();
             localStorage.setItem("token", data.token);
+            setLoggedIn(true);
             setNewError(data.error);
             setSuccessMessage(data.message);
 
