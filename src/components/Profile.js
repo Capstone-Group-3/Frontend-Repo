@@ -6,6 +6,8 @@ const Profile = () => {
     const { idState } = useOutletContext();
     const { productsState } = useOutletContext();
     const { currentToken } = useOutletContext();
+    const { adminState } = useOutletContext();
+    const [isAdmin, setIsAdmin] = adminState;
     const [username, setUsername] = usernameState;
     const [userId, setUserId] = idState;
     const [products, setProducts] = productsState;
@@ -13,18 +15,13 @@ const Profile = () => {
 
     const [placedOrders, setPlacedOrders] = useState([]);
 
-    useEffect(() => {
-        function checkToken() {
-            console.log("use effect token: ", currentToken);
-        }
-        checkToken();
-    }, [])
-
     function logOutUser(event) {
         event.preventDefault();
         localStorage.removeItem("token");
         setUsername("");
         setUserId("");
+        setIsAdmin(false);
+        
         navigate("/login");
     };
 
@@ -32,7 +29,7 @@ const Profile = () => {
     useEffect(() => {
         async function loadUserOrders() {
             try {
-                const response = await fetch (`http://localhost:3030/api/shopcart/${userId}`, {
+                const response = await fetch (`http://localhost:3030/api/shopcart/${userId}/`, {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${currentToken}`
@@ -69,13 +66,15 @@ const Profile = () => {
                 
                 <div>
                     <h1>Your Orders: </h1>
-                    {placedOrders.map((eachOrder, idx) => {
+                    {placedOrders && !!placedOrders.length ? 
+
+                        placedOrders.map((eachOrder, idx) => {
                         const matchingProduct = products.find((element) => {
-                            return eachOrder.productId == element.id })
+                        return eachOrder.productId == element.id })
                         return <div key={idx}>
                             <p>You ordered {eachOrder.quantity} <b>{matchingProduct.name}</b> for ${eachOrder.priceBoughtAt} each for a total of ${(eachOrder.quantity * eachOrder.priceBoughtAt).toFixed(2)} + shipping and handling</p>
                         </div>
-                    })}
+                    }) : <p>Blank here</p> }
                 </div>
             </div> : 
             <div>
