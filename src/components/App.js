@@ -10,6 +10,7 @@ const [userId, setUserId] = useState("");
 const [products, setProducts] = useState([]);
 const [isAdmin, setIsAdmin] = useState(false);
 const [loggedIn, setLoggedIn] = useState(null);
+const [pendingOrders, setPendingOrders] = useState([]);
 const currentToken = localStorage.getItem("token");
 
 const pageContext = { 
@@ -18,7 +19,8 @@ const pageContext = {
     productsState: [products, setProducts],
     currentToken,
     adminState: [isAdmin, setIsAdmin],
-    loggedInState: [loggedIn, setLoggedIn]
+    loggedInState: [loggedIn, setLoggedIn],
+    shopCartState: [pendingOrders, setPendingOrders]
 };
 
 
@@ -65,6 +67,32 @@ useEffect(() => {
     fetchProducts();
     
 }, [])
+
+useEffect(() => {
+    async function loadPendingOrders() {
+        try {
+            const response = await fetch (`http://localhost:3030/api/shopcart/${userId}/status`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${currentToken}`
+                },
+                body: JSON.stringify({
+                    cartStatus: "standby"
+                })
+            })
+            const data = await response.json();
+            console.log("the order data: ", data);
+            setPendingOrders(data);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    loadPendingOrders();
+
+}, [userId])
+
 
     return (
         <div>
