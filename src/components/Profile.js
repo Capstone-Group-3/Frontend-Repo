@@ -29,11 +29,15 @@ const Profile = () => {
     useEffect(() => {
         async function loadUserOrders() {
             try {
-                const response = await fetch (`http://localhost:3030/api/shopcart/${userId}/`, {
+                const response = await fetch (`http://localhost:3030/api/shopcart/${userId}/status`, {
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${currentToken}`
-                    }
+                    },
+                    body: JSON.stringify({
+                        cartStatus: "processed"
+                    })
                 })
                 const data = await response.json();
                 console.log("the order data: ", data);
@@ -74,7 +78,11 @@ const Profile = () => {
                         return <div key={idx}>
                             <p>You ordered {eachOrder.quantity} <b>{matchingProduct.name}</b> for ${eachOrder.priceBoughtAt} each for a total of ${(eachOrder.quantity * eachOrder.priceBoughtAt).toFixed(2)} + shipping and handling</p>
                         </div>
-                    }) : <p>Blank here</p> }
+                    }) : <p>No orders to disply!
+                            <br/>
+                            <Link to="products">Try browisng for products!</Link>
+                        </p>
+                     }
                 </div>
             </div> : 
             <div>
