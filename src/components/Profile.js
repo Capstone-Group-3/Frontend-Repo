@@ -80,7 +80,7 @@ const Profile = () => {
                         </div>
                     }) : <p>No orders to disply!
                             <br/>
-                            <Link to="products">Try browisng for products!</Link>
+                            <Link to="/products">Try browisng for products!</Link>
                         </p>
                      }
                 </div>
