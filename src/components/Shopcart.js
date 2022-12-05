@@ -72,6 +72,7 @@ const Shopcart = () => {
         }
     };
 
+    // export this to app.js then use it as dependency for useffect load on shopcart id
     async function checkOutFunc(event) {
         event.preventDefault();
         try {
@@ -86,6 +87,7 @@ const Shopcart = () => {
                 })
             })
             const data = await response.json();
+            console.log("the checkout data: ", data)
 
             if (data.success) {
                 navigate("/successpage")

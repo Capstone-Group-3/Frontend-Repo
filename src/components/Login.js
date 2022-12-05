@@ -32,7 +32,9 @@ const Login = () => {
             setSuccessMessage(data.message);
 
             if(data.token.length){
-                navigate("/")
+                setTimeout(() => {
+                    navigate("/")
+                }, 2000);
             }
         } catch (error) {
             console.error

@@ -34,7 +34,9 @@ const Register = () => {
             setLoggedIn(true);
 
             if(data.token.length){
-                navigate("/")
+                setTimeout(() => {
+                    navigate("/")
+                }, 2000);
             }
         } catch (error) {
             console.error
