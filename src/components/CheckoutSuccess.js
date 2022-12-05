@@ -17,6 +17,8 @@ const CheckoutSuccess = () => {
             <div>
                 <h1>Successful Checkout!</h1>
                 <Link to="/">Click here if you are not redirected to the homepage in a few seconds</Link>
+                <br/>
+                <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="loading gif" height="70" width="70"/>
             </div>
             : null }
          </div>
