@@ -13,6 +13,7 @@ import AdminPanel from "./components/AdminPanel";
 import Products from "./components/Products";
 import ProductDetails from "./components/ProductDetails";
 import Shopcart from "./components/Shopcart";
+import CheckoutSuccess from "./components/CheckoutSuccess";
 
 const appElement = document.getElementById("app");
 const root = createRoot(appElement);
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: "/shopcart",
                 element: <Shopcart />
+            },
+            {
+                path: "/successpage",
+                element: <CheckoutSuccess />
             }
         ]
     }

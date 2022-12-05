@@ -11,6 +11,7 @@ const [products, setProducts] = useState([]);
 const [isAdmin, setIsAdmin] = useState(false);
 const [loggedIn, setLoggedIn] = useState(null);
 const [pendingOrders, setPendingOrders] = useState([]);
+const [shopCartId, setShopCartId] = useState(0);
 const currentToken = localStorage.getItem("token");
 
 const pageContext = { 
@@ -20,7 +21,8 @@ const pageContext = {
     currentToken,
     adminState: [isAdmin, setIsAdmin],
     loggedInState: [loggedIn, setLoggedIn],
-    shopCartState: [pendingOrders, setPendingOrders]
+    shopCartState: [pendingOrders, setPendingOrders],
+    shopCartIdState: [shopCartId, setShopCartId]
 };
 
 
@@ -68,6 +70,7 @@ useEffect(() => {
     
 }, [])
 
+// this is getting cart items, but if there are no items in a cart it does not return anything and the states are not set to the new standby cart. new call/path necessary for this
 useEffect(() => {
     async function loadPendingOrders() {
         try {
@@ -83,7 +86,9 @@ useEffect(() => {
             })
             const data = await response.json();
             console.log("the order data: ", data);
+            const currentCartId = data.map(element => element.cartId)
             setPendingOrders(data);
+            setShopCartId(Number(currentCartId[0]))
         } catch (error) {
             console.error(error)
         }
