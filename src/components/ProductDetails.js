@@ -5,9 +5,11 @@ const ProductDetails = () => {
     const { productsState } = useOutletContext();
     const { currentToken } = useOutletContext();
     const { idState } = useOutletContext();
+    const { shoppingSessionState } = useOutletContext();
     const { shopCartIdState } = useOutletContext();
     const [products, setProducts] = productsState;
     const [userId, setUserId] = idState;
+    const [shoppingSessionData, setShoppingSessionData] = shoppingSessionState;
     const [shopCartId, setShopCartId] = shopCartIdState;
     const [quantity, setQuantity] = useState(1);
     const [successMessage, setSuccessMessage] = useState("");
@@ -41,7 +43,9 @@ const ProductDetails = () => {
                 })
             })
             const data = await response.json();
-            setSuccessMessage(data.message)
+            console.log("prod details data: ", data)
+            setSuccessMessage(data.message);
+            setShoppingSessionData(data)
         } catch (error) {
             console.error(error)
         }

@@ -7,7 +7,7 @@ const Products = () => {
 
     return (
         <div>
-            {
+            { // is active check
                 products && products.length ? products.map((eachProduct, idx) => {
                     return <div key={idx}>
                         <h2>{eachProduct.name}</h2>

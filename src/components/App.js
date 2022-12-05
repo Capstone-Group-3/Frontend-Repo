@@ -12,6 +12,8 @@ const [isAdmin, setIsAdmin] = useState(false);
 const [loggedIn, setLoggedIn] = useState(null);
 const [pendingOrders, setPendingOrders] = useState([]);
 const [shopCartId, setShopCartId] = useState(0);
+const [checkoutData, setCheckoutData] = useState("");
+const [shoppingSessionData, setShoppingSessionData] = useState("");
 const currentToken = localStorage.getItem("token");
 
 const pageContext = { 
@@ -22,7 +24,9 @@ const pageContext = {
     adminState: [isAdmin, setIsAdmin],
     loggedInState: [loggedIn, setLoggedIn],
     shopCartState: [pendingOrders, setPendingOrders],
-    shopCartIdState: [shopCartId, setShopCartId]
+    shopCartIdState: [shopCartId, setShopCartId],
+    checkoutDataState: [checkoutData, setCheckoutData],
+    shoppingSessionState: [shoppingSessionData, setShoppingSessionData]
 };
 
 useEffect(() => {
@@ -70,7 +74,8 @@ useEffect(() => {
 }, [loggedIn])
 
 
-// this is getting cart items, but if there are no items in a cart it does not return anything and the states are not set to the new standby cart. new call/path necessary for this
+// this is getting cart items, but if there are no items in a cart it does not return anything and the 
+// states are not set to the new standby cart. new call/path necessary for this
 useEffect(() => {
     // added this
     async function loadCurrentShoppingCart() {
@@ -88,7 +93,6 @@ useEffect(() => {
             // extra error "type error" -- but still sets id
             const data = await response.json();
             setShopCartId(data.id)
-            console.log("shop cart id STATE: ", shopCartId)
         } catch (error) {
             console.error(error)
         }
@@ -98,7 +102,7 @@ useEffect(() => {
     loadCurrentShoppingCart();
 
 
-}, [userId])
+}, [userId, checkoutData])
 
 useEffect(() => {
     async function loadPendingOrders() {
@@ -114,7 +118,6 @@ useEffect(() => {
                 })
             })
             const data = await response.json();
-            console.log("the order data: ", data);
             setPendingOrders(data);
         } catch (error) {
             console.error(error)
@@ -123,14 +126,18 @@ useEffect(() => {
 
     loadPendingOrders();
 
-}, [shopCartId])
+}, [shopCartId, shoppingSessionData])
 
+console.log("shop cart id STATE: ", shopCartId)
+console.log("the order data: ", pendingOrders);
+
+// add extra props to navbar => pendingorders.length + 1 (if not pendingorders.length then it's null)
 
     return (
         <div>
             <div>
                 <h1>Marketplace App</h1>
-                <Navbar isAdmin={isAdmin}/>
+                <Navbar pendingOrdersState={[pendingOrders, setPendingOrders]} isAdmin={isAdmin}/>
             </div>
             <Outlet context={pageContext}/>
             <Footer />

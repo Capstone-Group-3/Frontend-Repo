@@ -7,10 +7,12 @@ const Shopcart = () => {
     const { shopCartState } = useOutletContext();
     const { shopCartIdState } = useOutletContext();
     const { currentToken } = useOutletContext();
+    const { checkoutDataState } = useOutletContext();
     const [userId, setUserId] = idState;
     const [products, setProducts] = productsState;
     const [pendingOrders, setPendingOrders] = shopCartState;
     const [shopCartId, setShopCartId] = shopCartIdState;
+    const [checkoutData, setCheckoutData] = checkoutDataState;
     const navigate = useNavigate();
 
     const [currentProductId, setCurrentProductId] = useState(0);
@@ -91,6 +93,7 @@ const Shopcart = () => {
 
             if (data.success) {
                 navigate("/successpage")
+                setCheckoutData(data)
             } else {
                 setNewError(data.name)
             }
@@ -105,7 +108,7 @@ const Shopcart = () => {
         <div> { currentToken && !!currentToken.length ?
             <div>
                 <h1>Your Cart</h1>
-                    {pendingOrders.map((order, idx) => {
+                    {pendingOrders && !!pendingOrders.length ? pendingOrders.map((order, idx) => {
                         const matchingProduct = products.find((element) => {
                         return order.productId == element.id })
                         return <div key={idx}>
@@ -113,7 +116,7 @@ const Shopcart = () => {
                             <p>Price: ${order.priceBoughtAt}</p>
                             <p>Quantity: {order.quantity}</p>
                         </div>
-                    })}
+                    }) : null}
 
                 <div>
                     <br />
