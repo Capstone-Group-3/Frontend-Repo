@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
 const [username, setUsername] = useState("");
-const [userId, setUserId] = useState("");
+const [userId, setUserId] = useState(0);
 const [products, setProducts] = useState([]);
 const [isAdmin, setIsAdmin] = useState(false);
 const [loggedIn, setLoggedIn] = useState(null);
@@ -24,32 +24,6 @@ const pageContext = {
     shopCartState: [pendingOrders, setPendingOrders],
     shopCartIdState: [shopCartId, setShopCartId]
 };
-
-
-// need a users/me route in api, or something similar that checks token against db for users and returns your data
-useEffect(() => {
-    async function loadProfileInfo() {
-        try {
-            const response = await fetch ("http://localhost:3030/api/users/me", {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${currentToken}`
-                }
-            })
-
-            const data = await response.json();
-            setUsername(data.username);
-            setUserId(data.id);
-            setIsAdmin(data.isAdmin);
-            
-        } catch (error) {
-            console.error
-        }
-    }
-
-    loadProfileInfo();
-
-}, [loggedIn])
 
 useEffect(() => {
     async function fetchProducts() {
@@ -70,7 +44,62 @@ useEffect(() => {
     
 }, [])
 
+// need a users/me route in api, or something similar that checks token against db for users and returns your data
+useEffect(() => {
+    async function loadProfileInfo() {
+        try {
+            const response = await fetch ("http://localhost:3030/api/users/me", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${currentToken}`
+                }
+            })
+
+            const data = await response.json();
+            setUsername(data.username);
+            setUserId(data.id);
+            setIsAdmin(data.isAdmin);
+
+        } catch (error) {
+            console.error
+        }
+    }
+
+    loadProfileInfo();
+
+}, [loggedIn])
+
+
 // this is getting cart items, but if there are no items in a cart it does not return anything and the states are not set to the new standby cart. new call/path necessary for this
+useEffect(() => {
+    // added this
+    async function loadCurrentShoppingCart() {
+        try {
+            const response = await fetch ("http://localhost:3030/api/shopcart/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${currentToken}`
+                },
+                body: JSON.stringify({
+                    userId: userId
+                })
+            })
+            // extra error "type error" -- but still sets id
+            const data = await response.json();
+            setShopCartId(data.id)
+            console.log("shop cart id STATE: ", shopCartId)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    // import checkoutfunc to app.js then use it as dependency for useffect load on shopcart id
+    loadCurrentShoppingCart();
+
+
+}, [userId])
+
 useEffect(() => {
     async function loadPendingOrders() {
         try {
@@ -86,9 +115,7 @@ useEffect(() => {
             })
             const data = await response.json();
             console.log("the order data: ", data);
-            const currentCartId = data.map(element => element.cartId)
             setPendingOrders(data);
-            setShopCartId(Number(currentCartId[0]))
         } catch (error) {
             console.error(error)
         }
@@ -96,7 +123,7 @@ useEffect(() => {
 
     loadPendingOrders();
 
-}, [userId])
+}, [shopCartId])
 
 
     return (
