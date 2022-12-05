@@ -5,8 +5,10 @@ const ProductDetails = () => {
     const { productsState } = useOutletContext();
     const { currentToken } = useOutletContext();
     const { idState } = useOutletContext();
+    const { shopCartIdState } = useOutletContext();
     const [products, setProducts] = productsState;
     const [userId, setUserId] = idState;
+    const [shopCartId, setShopCartId] = shopCartIdState;
     const [quantity, setQuantity] = useState(1);
     const [successMessage, setSuccessMessage] = useState("");
 
@@ -15,10 +17,6 @@ const ProductDetails = () => {
     const [toggleProductDetailsForm, setToggleProductDetailsForm] = useState(false)
 
     const { id } = useParams();
-
-    // function handleToggleProductDetailsForm () {
-    //     setToggleProductDetailsForm (!toggleProductDetailsForm);
-    // }
     
     useEffect(() => {
         function findSpecificProduct () {
@@ -31,7 +29,7 @@ const ProductDetails = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3030/api/shopcart/${userId}/add`, {
+            const response = await fetch(`http://localhost:3030/api/shopcart/${shopCartId}/add`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,12 +53,6 @@ const ProductDetails = () => {
 
     return (
         <div>
-            {/* <button onClick ={handleToggleProductDetailsForm}>Product Details</button>
-            {   // setting products here is probably not what we want to do, because products/setproducts is what we get from our api on the homepage
-                toggleProductDetailsForm ? <ProductDetails indivProduct={detailedSpecificProduct} Products = {setProducts}
-                handleToggleProductDetailsForm= {handleToggleProductDetailsForm}/>: null */}
-            {/* } */}
-
             <div>
                 {  detailedSpecificProduct.isActive ? // extra check in case someone uses a route to go to an inactive product
                     <div>
