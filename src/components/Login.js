@@ -15,7 +15,7 @@ const Login = () => {
     async function logInUser(event) {
         event.preventDefault();
         try {
-            const response = await fetch("http://localhost:3030/api/users/login", {
+            const response = await fetch("https://project-09-backend.onrender.com/api/users/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

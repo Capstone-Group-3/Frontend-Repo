@@ -30,7 +30,7 @@ const EditProduct=({indivProduct})=>{
         event.preventDefault()
         console.log(targetedProduct)
         try {
-            const response = await fetch(`http://localhost:3030/api/products/${id}`,{
+            const response = await fetch(`https://project-09-backend.onrender.com/api/products/${id}`,{
                 method: "DELETE",
                 headers:{
                     "Content-Type":"application/json",
@@ -38,7 +38,7 @@ const EditProduct=({indivProduct})=>{
                 }
             })
             const deletedProductData=await response.json()
-            const productResponse = await fetch ('http://localhost:3030/api/products')
+            const productResponse = await fetch ('https://project-09-backend.onrender.com/api/products')
             const newProducts = await productResponse.json()
             setProducts(newProducts);
         } catch (error) {
@@ -65,7 +65,7 @@ const EditProduct=({indivProduct})=>{
             productInfo.quantity = targetQuantity
         };
         try {
-            const response=await fetch(`http://localhost:3030/api/products/${targetedProduct}`,{
+            const response=await fetch(`https://project-09-backend.onrender.com/api/products/${targetedProduct}`,{
                 method: "PATCH",
                 headers:{
                     "Content-Type":"application/json",
@@ -75,7 +75,7 @@ const EditProduct=({indivProduct})=>{
             })
             const data= await response.json();
             console.log(data)
-            const productResponse = await fetch ('http://localhost:3030/api/products')
+            const productResponse = await fetch ('https://project-09-backend.onrender.com/api/products')
             const newProducts = await productResponse.json()
             setProducts(newProducts);
         } catch (error) {
@@ -85,16 +85,24 @@ const EditProduct=({indivProduct})=>{
 
 
     return <div>
-        <p>{name}</p>
+        <h3>{name}</h3>
         <form onSubmit={(e)=>editTargetProduct(e, id)}>
             <label>Name</label>
+            <br/>
             <input value={targetName} onChange={(e)=>handleInputChange(e, setTargetName)}></input>
+            <br/>
             <label>Description</label>
+            <br/>
             <input value={targetDescription} onChange={(e)=>handleInputChange(e, setTargetDescription)}></input>
+            <br/>
             <label>Price</label>
+            <br/>
             <input value={targetPrice} onChange={(e)=>handleInputChange(e, setTargetPrice)}></input>
+            <br/>
             <label>Quantity</label>
+            <br/>
             <input value={targetQuantity} onChange={(e)=>handleInputChange(e, setTargetQuantity)}></input>
+            <br/>
             <button type="submit" value={id}>Edit</button>
         </form>
             <button type="button" onClick={(e)=>deactivateProduct(e, id)} value={id}>Delete</button>

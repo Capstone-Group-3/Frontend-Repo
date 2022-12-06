@@ -58,7 +58,7 @@ const [addQuantity, setAddQuantity]=useState(0)
         productInfo.quantity = addQuantity
     };
         try {
-            const response=await fetch(`http://localhost:3030/api/products`, {
+            const response=await fetch(`https://project-09-backend.onrender.com/api/products`, {
                 method: "POST",
                 headers:{
                     "Content-Type":"application/json",
@@ -75,7 +75,7 @@ const [addQuantity, setAddQuantity]=useState(0)
     useEffect(() =>{
         async function getRegUsers() {
         try {
-            const userGroup = await fetch("http://localhost:3030/api/users/nonAdmin", {
+            const userGroup = await fetch("https://project-09-backend.onrender.com/api/users/nonAdmin", {
                 headers: {
                     "Content-Type": "application.json",
                     "Authorization": `Bearer ${currentToken}`
@@ -105,7 +105,7 @@ const [addQuantity, setAddQuantity]=useState(0)
         <div>
             {isAdmin?
             <div>
-                <h2>Give Administrative Privledges</h2>
+                <h2>Give Administrative Privleges</h2>
                 <button onClick={(()=>setIsUsersToggled(!isUsersToggled))}>Show Users</button>
                     {isUsersToggled && regUsers.map((indivUser, idx)=>{
                         return <form onSubmit={promoteUser} key={idx}>
@@ -123,13 +123,21 @@ const [addQuantity, setAddQuantity]=useState(0)
                     <h2>Add a new Product</h2>
                     <form onSubmit={makeProduct}>
                         <label>Name</label>
+                        <br/>
                         <input value={addName} onChange={(e)=>handleInputChange(e, setAddName)}></input>
+                        <br/>
                         <label>Description</label>
+                        <br/>
                         <input value={addDescription} onChange={(e)=>handleInputChange(e, setAddDescription)}></input>
+                        <br/>
                         <label>Price</label>
+                        <br/>
                         <input value={addPrice} onChange={(e)=>handleInputChange(e, setAddPrice)}></input>
+                        <br/>
                         <label>Quantity</label>
+                        <br/>
                         <input value={addQuantity} onChange={(e)=>handleInputChange(e, setAddQuantity)}></input>
+                        <br/>
                         <button type="submit">Submit</button>
                     </form>
                 </div>

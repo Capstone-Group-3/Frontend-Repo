@@ -32,7 +32,7 @@ const pageContext = {
 useEffect(() => {
     async function fetchProducts() {
         try {
-            const response = await fetch("http://localhost:3030/api/products/", {
+            const response = await fetch("https://project-09-backend.onrender.com/api/products/", {
                 headers: {
                     "Content-Type": "application/json",
                 }
@@ -52,7 +52,7 @@ useEffect(() => {
 useEffect(() => {
     async function loadProfileInfo() {
         try {
-            const response = await fetch ("http://localhost:3030/api/users/me", {
+            const response = await fetch ("https://project-09-backend.onrender.com/api/users/me", {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${currentToken}`
@@ -80,7 +80,7 @@ useEffect(() => {
     // added this
     async function loadCurrentShoppingCart() {
         try {
-            const response = await fetch ("http://localhost:3030/api/shopcart/", {
+            const response = await fetch ("https://project-09-backend.onrender.com/api/shopcart/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -107,7 +107,7 @@ useEffect(() => {
 useEffect(() => {
     async function loadPendingOrders() {
         try {
-            const response = await fetch (`http://localhost:3030/api/shopcart/${userId}/status`, {
+            const response = await fetch (`https://project-09-backend.onrender.com/api/shopcart/${userId}/status`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -16,7 +16,7 @@ const Register = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:3030/api/users/register", {
+            const response = await fetch("https://project-09-backend.onrender.com/api/users/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
