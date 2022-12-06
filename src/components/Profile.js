@@ -29,7 +29,7 @@ const Profile = () => {
     useEffect(() => {
         async function loadUserOrders() {
             try {
-                const response = await fetch (`http://localhost:3030/api/shopcart/${userId}/status`, {
+                const response = await fetch (`https://project-09-backend.onrender.com/api/shopcart/${userId}/status`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

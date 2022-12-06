@@ -31,7 +31,7 @@ const ProductDetails = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3030/api/shopcart/${shopCartId}/add`, {
+            const response = await fetch(`https://project-09-backend.onrender.com/api/shopcart/${shopCartId}/add`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
