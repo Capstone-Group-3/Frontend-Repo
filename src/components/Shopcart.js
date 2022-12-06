@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
 
 const Shopcart = () => {
+    // imported states
     const { idState } = useOutletContext();
     const { productsState } = useOutletContext();
     const { shopCartState } = useOutletContext();
@@ -15,18 +16,12 @@ const Shopcart = () => {
     const [checkoutData, setCheckoutData] = checkoutDataState;
     const navigate = useNavigate();
 
+    // states created to set product id, quantity and error for an error message
     const [currentProductId, setCurrentProductId] = useState(0);
     const [currentQuantity, setCurrentQuantity] = useState(0);
     const [newError, setNewError] = useState("");
 
-
-    // FUNCTIONS:
-        // calculating total
-
-    // drop down to change quantity
-    // button to remove item from cart
-    // calculates total
-    // Some method that verifies everything in payment info as "accurate" and/or saves it before it takes you to a success page
+    // need to update the changed quantity and removed item in real time
 
     useEffect(() => {
         function addTotal() {
@@ -34,7 +29,7 @@ const Shopcart = () => {
         }
     }, [currentQuantity, currentProductId]);
     
-
+    // edits a products quantity
     async function changeProductQuantity(event) {
         event.preventDefault();
         try {
@@ -55,6 +50,7 @@ const Shopcart = () => {
         }
     };
 
+    // removes product from order, hard deleting it from cart items
     async function removeProductFromOrder(event) {
         event.preventDefault();
         try {
@@ -74,7 +70,8 @@ const Shopcart = () => {
         }
     };
 
-    // export this to app.js then use it as dependency for useffect load on shopcart id
+    // changes cart status to processed, 
+    // then if a success message is returned the user is naviagted to a success page or else an error message displays
     async function checkOutFunc(event) {
         event.preventDefault();
         try {
@@ -89,7 +86,6 @@ const Shopcart = () => {
                 })
             })
             const data = await response.json();
-            console.log("the checkout data: ", data)
 
             if (data.success) {
                 navigate("/successpage")
@@ -103,18 +99,46 @@ const Shopcart = () => {
         }
     };
 
+    // updates the product id, used for both edit and deleting products
+    function updateProductId(event){
+        setCurrentProductId(event.target.value)
+    }
+
+    // updates quantity to the value of a drop down select option
+    function updateQuantity(event){
+        setCurrentQuantity(event.target.value)
+    }
 
     return (
         <div> { currentToken && !!currentToken.length ?
             <div>
                 <h1>Your Cart</h1>
+                    {/* Maps through pending orders */}
+
                     {pendingOrders && !!pendingOrders.length ? pendingOrders.map((order, idx) => {
+
+                        // finds the id of a product from the product state that matches the productid on the current order being mapped
+                        // this is so a product name can be displayed
                         const matchingProduct = products.find((element) => {
                         return order.productId == element.id })
                         return <div key={idx}>
-                            <h3>{matchingProduct.name}</h3>
-                            <p>Price: ${order.priceBoughtAt}</p>
-                            <p>Quantity: {order.quantity}</p>
+                            <form onSubmit={changeProductQuantity}>
+                                <h3>{matchingProduct.name}</h3>
+                                <p>Price: ${order.priceBoughtAt}</p>
+                                <p>Quantity: {order.quantity}</p>
+                                <select onChange={updateQuantity}>Change Quantity
+                                    <option value={1}>1</option>
+                                    <option value={2}>2</option>
+                                    <option value={3}>3</option>
+                                    <option value={4}>4</option>
+                                    <option value={5}>5</option>
+                                </select>
+                                <button value={order.productId} onClick={updateProductId} type="submit">Update</button>
+                            </form>
+                            <br/>
+                            <form onSubmit={removeProductFromOrder}>
+                                <button type="submit" value={order.productId} onClick={updateProductId}>Remove item from cart</button>
+                            </form>
                         </div>
                     }) : null}
 
