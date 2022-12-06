@@ -18,7 +18,7 @@ const Shopcart = () => {
 
     // states created to set product id, quantity and error for an error message + total num variable
     const [currentProductId, setCurrentProductId] = useState(0);
-    const [currentQuantity, setCurrentQuantity] = useState(0);
+    const [currentQuantity, setCurrentQuantity] = useState(1);
     const [newError, setNewError] = useState("");
     let totalNum = 0
 
