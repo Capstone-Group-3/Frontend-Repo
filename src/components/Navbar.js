@@ -5,7 +5,7 @@ const Navbar = ({isAdmin, pendingOrdersState}) => {
     const [pendingOrders, setPendingOrders] = pendingOrdersState
 
     return (
-        <nav>
+        <nav className="Navbar">
             <Link to="products">Browse Products</Link>
             <Link to="login">Log In</Link>
             <Link to="profile">Profile</Link>

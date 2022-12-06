@@ -33,7 +33,7 @@ const Shopcart = () => {
     async function changeProductQuantity(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3030/api/shopcart/${shopCartId}/quantity`, {
+            const response = await fetch(`https://project-09-backend.onrender.com/api/shopcart/${shopCartId}/quantity`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const Shopcart = () => {
     async function removeProductFromOrder(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3030/api/shopcart/${shopCartId}/remove`, {
+            const response = await fetch(`https://project-09-backend.onrender.com/api/shopcart/${shopCartId}/remove`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
