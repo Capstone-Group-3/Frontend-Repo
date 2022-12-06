@@ -42,19 +42,19 @@ const [addQuantity, setAddQuantity]=useState(0)
 
     async function makeProduct(){
     const productInfo={}
-    if (name) {
+    if (addName) {
         productInfo.name = addName
     };
 
-    if (description) {
+    if (addDescription) {
         productInfo.description = addDescription
     };
 
-    if (price) {
+    if (addPrice) {
         productInfo.price = addPrice
     };
 
-    if (quantity) {
+    if (addQuantity) {
         productInfo.quantity = addQuantity
     };
         try {
@@ -67,9 +67,8 @@ const [addQuantity, setAddQuantity]=useState(0)
                 body:JSON.stringify(productInfo)
             })
             const data= await response.json();
-            useNavigate("/")
         } catch (error) {
-            console.error
+            console.error(error)
         }
     }
 
