@@ -107,18 +107,18 @@ const [addQuantity, setAddQuantity]=useState(0)
             <div>
                 <h2>Give Administrative Privleges</h2>
                 <button onClick={(()=>setIsUsersToggled(!isUsersToggled))}>Show Users</button>
-                    {isUsersToggled && regUsers.map((indivUser, idx)=>{
+                    <div className="userContainer">{isUsersToggled && regUsers.map((indivUser, idx)=>{
                         return <form onSubmit={promoteUser} key={idx}>
                             <p>{indivUser.username}</p>
                             <button type="submit" value={indivUser.name}>Promote</button>
                         </form>
-                    })}
+                    })}</div>
 
                 <h2>Edit Products</h2>
                 <button onClick={(()=>setIsProductsToggled(!isProductsToggled))}>Show Products</button>
-                    {isProductsToggled && products.map((indivProduct, idx)=>{
+                    <div className="editProductContainer">{isProductsToggled && products.map((indivProduct, idx)=>{
                         return <EditProduct key={idx} indivProduct={indivProduct}/>
-                    })}
+                    })}</div>
                 <div>
                     <h2>Add a new Product</h2>
                     <form onSubmit={makeProduct}>

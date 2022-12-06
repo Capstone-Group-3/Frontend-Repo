@@ -106,9 +106,9 @@ const EditProduct=({indivProduct})=>{
             <br/>
             <input value={targetQuantity} onChange={(e)=>handleInputChange(e, setTargetQuantity)}></input>
             <br/>
-            <button type="submit" value={id}>Edit</button>
+            <button type="submit" value={id}>Edit</button> <button type="button" onClick={(e)=>deactivateProduct(e, id)} value={id}>Delete</button>
         </form>
-            <button type="button" onClick={(e)=>deactivateProduct(e, id)} value={id}>Delete</button>
+            
 
     </div>
     }

@@ -36,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/Capstone-Group-3/Frontend-Repo/issues"
   },
-  "homepage": "/"
+  "homepage": "/",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
 }
