@@ -16,24 +16,38 @@ const Shopcart = () => {
     const [checkoutData, setCheckoutData] = checkoutDataState;
     const navigate = useNavigate();
 
-    // states created to set product id, quantity and error for an error message
+    // states created to set product id, quantity and error for an error message + total num variable
     const [currentProductId, setCurrentProductId] = useState(0);
     const [currentQuantity, setCurrentQuantity] = useState(0);
     const [newError, setNewError] = useState("");
+    let totalNum = 0
 
-    // need to update the changed quantity and removed item in real time
-
-    useEffect(() => {
-        function addTotal() {
-            // add up total from quantity and price bought at, invoked whenever the quantity changes or something is deleted
+    
+    async function fetchUpdatedCartItems() {
+        try {
+            const response = await fetch(`https://project-09-backend.onrender.com/api/shopcart/${userId}/status`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${currentToken}`
+                },
+                body: JSON.stringify({
+                    cartStatus: "standby"
+                })
+            })
+            const data = await response.json();
+            setPendingOrders(data);
+        } catch (error) {
+            console.error(error)
         }
-    }, [currentQuantity, currentProductId]);
+    }
+
     
     // edits a products quantity
     async function changeProductQuantity(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3030/api/shopcart/${shopCartId}/quantity`, {
+            const response = await fetch(`https://project-09-backend.onrender.com/api/shopcart/${shopCartId}/quantity`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,6 +59,7 @@ const Shopcart = () => {
                 })
             })
             const data = await response.json();
+            fetchUpdatedCartItems();
         } catch (error) {
             console.error(error)
         }
@@ -54,7 +69,7 @@ const Shopcart = () => {
     async function removeProductFromOrder(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3030/api/shopcart/${shopCartId}/remove`, {
+            const response = await fetch(`https://project-09-backend.onrender.com/api/shopcart/${shopCartId}/remove`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -65,6 +80,7 @@ const Shopcart = () => {
                 })
             })
             const data = await response.json();
+            fetchUpdatedCartItems();
         } catch (error) {
             console.error(error)
         }
@@ -75,7 +91,7 @@ const Shopcart = () => {
     async function checkOutFunc(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3030/api/shopcart/${shopCartId}/status`, {
+            const response = await fetch(`https://project-09-backend.onrender.com/api/shopcart/${shopCartId}/status`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -116,6 +132,7 @@ const Shopcart = () => {
                     {/* Maps through pending orders */}
 
                     {pendingOrders && !!pendingOrders.length ? pendingOrders.map((order, idx) => {
+                        {totalNum += order.quantity * order.priceBoughtAt}
 
                         // finds the id of a product from the product state that matches the productid on the current order being mapped
                         // this is so a product name can be displayed
@@ -145,13 +162,12 @@ const Shopcart = () => {
                 <div>
                     <br />
                     <p>Shipping and handling: <b>FREE!</b></p>
-                    <b>Total: $100</b>
+                    <b>Total: ${(totalNum).toFixed(2)}</b>
                 </div>
 
                 <div>
                     <form onSubmit={checkOutFunc}>Enter shipping info
-                    {/* Comment all the inputs out for testing and just leave the button to save time */}
-                        {/* <div id="address-form">
+                        <div id="address-form">
                             <input type="text" placeholder="Name" required/>
                             <br/>
                             <input type="text" placeholder="Street" required/>
@@ -164,7 +180,7 @@ const Shopcart = () => {
                         <label>Enter payment info</label>
                         <br />
                         <input type="tel" minLength="16" maxLength="16" placeholder="Card Number" required/>
-                        <input type="tel" maxLength="4" minLength="4" pattern="[0-9]{4}" placeholder="Expiration Date" required/> */}
+                        <input type="tel" maxLength="4" minLength="4" pattern="[0-9]{4}" placeholder="Expiration Date" required/>
                         <input type="tel" pattern="[0-9]{3}" maxLength="3" minLength="3" placeholder="CVV" required/>
                         <br/>
 
