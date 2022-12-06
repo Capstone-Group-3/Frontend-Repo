@@ -3,7 +3,7 @@ import {useOutletContext} from "react-router-dom"
 
 const EditProduct=({indivProduct})=>{
     const {usernameState, adminState, currentToken, productsState:[products, setProducts]} = useOutletContext()
-    const {id, name, description, quantiy, price} = indivProduct
+    const {id, name, description, quantiy, price, isActive} = indivProduct
     const [targetedProduct, setTargetedProduct]= useState(0)
     const [targetName, setTargetName]=useState("")
     const [targetDescription, setTargetDescription]=useState("")
@@ -86,6 +86,9 @@ const EditProduct=({indivProduct})=>{
 
     return <div>
         <h3>{name}</h3>
+        {isActive ?
+        <h5>Active item</h5>:<h5>Inactive item</h5>    
+        }
         <form onSubmit={(e)=>editTargetProduct(e, id)}>
             <label>Name</label>
             <br/>
