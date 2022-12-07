@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext, useNavigate } from "react-router";
 import EditProduct from './EditProduct'
+import "./css/PrestonAdmin.css"
 
 const AdminPanel=()=>{
     const navigate = useNavigate()
@@ -105,41 +106,44 @@ const [addQuantity, setAddQuantity]=useState(0)
         <div>
             {isAdmin?
             <div>
-                <h2>Give Administrative Privleges</h2>
-                <button onClick={(()=>setIsUsersToggled(!isUsersToggled))}>Show Users</button>
-                    {isUsersToggled && regUsers.map((indivUser, idx)=>{
-                        return <form onSubmit={promoteUser} key={idx}>
-                            <p>{indivUser.username}</p>
-                            <button type="submit" value={indivUser.name}>Promote</button>
+                <h2 className="titleHeader">Give Administrative Privleges</h2>
+                <button className='openButton' onClick={(()=>setIsUsersToggled(!isUsersToggled))}>Show Users</button>
+                    <div className="userContainer">{isUsersToggled && regUsers.map((indivUser, idx)=>{
+                        return <form className="adminIndivUser" onSubmit={promoteUser} key={idx}>
+                            <p classname='IndivUserChild'>{indivUser.username}</p>
+                            
+                            <button classname='IndivUserChild userButton'type="submit" value={indivUser.name}>Promote</button>
                         </form>
-                    })}
+                    })}</div>
 
-                <h2>Edit Products</h2>
-                <button onClick={(()=>setIsProductsToggled(!isProductsToggled))}>Show Products</button>
-                    {isProductsToggled && products.map((indivProduct, idx)=>{
+                <h2 className="titleHeader">Edit Products</h2>
+                <button className='openButton' onClick={(()=>setIsProductsToggled(!isProductsToggled))}>Show Products</button>
+                    <div className="editProductContainer">{isProductsToggled && products.map((indivProduct, idx)=>{
                         return <EditProduct key={idx} indivProduct={indivProduct}/>
-                    })}
+                    })}</div>
                 <div>
-                    <h2>Add a new Product</h2>
-                    <form onSubmit={makeProduct}>
-                        <label>Name</label>
-                        <br/>
-                        <input value={addName} onChange={(e)=>handleInputChange(e, setAddName)}></input>
-                        <br/>
-                        <label>Description</label>
-                        <br/>
-                        <input value={addDescription} onChange={(e)=>handleInputChange(e, setAddDescription)}></input>
-                        <br/>
-                        <label>Price</label>
-                        <br/>
-                        <input value={addPrice} onChange={(e)=>handleInputChange(e, setAddPrice)}></input>
-                        <br/>
-                        <label>Quantity</label>
-                        <br/>
-                        <input value={addQuantity} onChange={(e)=>handleInputChange(e, setAddQuantity)}></input>
-                        <br/>
-                        <button type="submit">Submit</button>
+                    <h2 className="titleHeader">Add a new Product</h2>
+                    <div className='makeProduct'>
+                        <form className='adminIndivEdit'onSubmit={makeProduct}>
+                            <label>Name</label>
+                            <br/>
+                            <input value={addName} onChange={(e)=>handleInputChange(e, setAddName)}></input>
+                            <br/>
+                            <label>Description</label>
+                            <br/>
+                            <input value={addDescription} onChange={(e)=>handleInputChange(e, setAddDescription)}></input>
+                            <br/>
+                            <label>Price</label>
+                            <br/>
+                            <input value={addPrice} onChange={(e)=>handleInputChange(e, setAddPrice)}></input>
+                            <br/>
+                            <label>Quantity</label>
+                            <br/>
+                            <input value={addQuantity} onChange={(e)=>handleInputChange(e, setAddQuantity)}></input>
+                            <br/>
+                            <button type="submit">Submit</button>
                     </form>
+                    </div>
                 </div>
             </div>
             :

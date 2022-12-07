@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+import "./css/emirProducts.css"
 
 const Products = () => {
     const { productsState } = useOutletContext();
@@ -16,8 +17,11 @@ const Products = () => {
             { // is active check
                 activeProducts && activeProducts.length ? activeProducts.map((eachProduct, idx) => {
                     return <div key={idx}>
+                      <div class="allproducts">
                         <h2>{eachProduct.name}</h2>
-                        <Link to={`/products/${eachProduct.id}`}>Click here to see more</Link>
+                        <img src={eachProduct.image} alt="product-image" height="80" width="80"/>
+                        <Link className="products-link"to={`/products/${eachProduct.id}`}>Click here to see more</Link>
+                        </div>
                     </div>
                 }): null
             }

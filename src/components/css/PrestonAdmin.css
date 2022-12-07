@@ -1,0 +1,80 @@
+.userContainer{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    overflow: wrap;
+    width: ;
+}
+
+.editProductContainer{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.adminIndivUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px;
+    width: 50%;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: #eaeaea;
+    margin-top: 1%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px black; 
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.IndivUserChild{
+    display: flex;
+    align-items: center;
+}
+
+.userButton{
+    border-radius: 50%;
+}
+
+.adminIndivEdit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px;
+    width: 20%;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: #eaeaea;
+    margin-top: 1%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px black; 
+    font-weight: bold;
+    padding-bottom: 5px; 
+    justify-content: space-around;
+    min-width: 200px;
+    max-width: 250px;
+    padding: 10px;
+}
+
+.titleHeader{
+    display: flex;
+    justify-content: center;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: #eaeaea;
+    margin-top: 1%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px black; 
+}
+
+.openButton{
+    display: flex;
+    margin-left: auto;
+    margin-right: 20px; 
+}
+.makeProduct{
+    display: flex;
+    justify-content: center;
+}
+#login-container{
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
