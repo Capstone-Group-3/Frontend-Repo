@@ -1,0 +1,67 @@
+.userContainer{
+    display: flex;
+    flex-flow: row;
+    overflow: wrap;
+    width: 26%;
+}
+
+.editProductContainer{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.adminIndivUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px;
+    border: solid #535d66;
+    border-radius: 5px;
+    width: 50%;
+    background-color: #282c30;
+    color: #992e37;
+    font-weight: bold;
+    min-width: 70px;
+}
+
+.IndivUserChild{
+    display: flex;
+    align-items: center;
+}
+
+.adminIndivEdit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px;
+    width: 20%;
+    border: solid #535d66;
+    border-radius: 5px;
+    background-color: #282c30;
+    color: #992e37;
+    font-weight: bold;
+    padding-bottom: 5px; 
+    justify-content: space-around;
+    min-width: 200px;
+    max-width: 250px;
+}
+
+.titleHeader{
+    display: flex;
+    justify-content: center;
+    color: #992e37;
+    border: solid #535d66;
+    border-radius: 5px;
+    background-color: #282c30;
+    color: #992e37;
+}
+
+.openButton{
+    display: flex;
+    margin-left: auto;
+    margin-right: 20px; 
+}
+.makeProduct{
+    display: flex;
+    justify-content: center;
+}

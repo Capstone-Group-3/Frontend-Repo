@@ -6,13 +6,4 @@
     font-weight: bold;
 }
 
-.userContainer{
-    display: flex;
-    flex-flow: row wrap;
-    width: 26%;
-}
 
-.editProductContainer{
-    display: flex;
-    flex-flow: row wrap;
-}
