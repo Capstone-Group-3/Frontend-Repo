@@ -84,7 +84,7 @@ const EditProduct=({indivProduct})=>{
     }
 
 
-    return <div>
+    return <div className="adminIndivEdit">
         <h3>{name}</h3>
         {isActive ?
         <h5>Active item</h5>:<h5>Inactive item</h5>    
