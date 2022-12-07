@@ -112,7 +112,7 @@ const [addQuantity, setAddQuantity]=useState(0)
                         return <form className="adminIndivUser" onSubmit={promoteUser} key={idx}>
                             <p classname='IndivUserChild'>{indivUser.username}</p>
                             
-                            <button classname='IndivUserChild'type="submit" value={indivUser.name}>Promote</button>
+                            <button classname='IndivUserChild userButton'type="submit" value={indivUser.name}>Promote</button>
                         </form>
                     })}</div>
 

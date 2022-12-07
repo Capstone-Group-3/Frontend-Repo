@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import Homepage from "./Homepage";
+import './css/PrestonAdmin.css'
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -51,7 +52,7 @@ const Login = () => {
 
     return (
         <div id="login-container">
-            <form onSubmit={logInUser}>Log In
+            <form className='adminIndivEdit' onSubmit={logInUser}>Log In
                 <br />
                 <input type="text" value={username} onChange={updateUsername} placeholder="Your username" required/>
                 <br />

@@ -53,8 +53,8 @@ const Register = () => {
 
 
     return (
-        <div>
-            <form onSubmit={registerUser}>Register for an account
+        <div id="login-container">
+            <form className='adminIndivEdit' onSubmit={registerUser}>Register for an account
                 <br />
                 <input type="text" value={username} onChange={updateUsernameState} placeholder="Create Username"/>
                 <br />
