@@ -1,0 +1,27 @@
+* {
+
+    background-color:#c47682;
+    background-color:#F19261;
+    background-color:#EBB553
+}
+
+.Navbar{
+    background-color: #F19261;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding:1em;
+    color-scheme: black;  
+}
+Link {
+    background-color: #F19261;
+}
+
+span a{
+    background-color:#F19261;
+    text-decoration:none;
+}
+
+.products{
+    background-color:#EBB553;
+}
