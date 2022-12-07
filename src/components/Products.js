@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+import "./css/emirProducts.css"
 
 const Products = () => {
     const { productsState } = useOutletContext();
