@@ -94,9 +94,9 @@ const Profile = () => {
                             <button onClick={() => { handleClick(eachOrder) }} id="linkbtn">View this item</button>
                             <button id="cartbtn">Add to cart again</button>
                         </div>
-                    }) : <p>No orders to disply!
+                    }) : <p>No orders to display!
                             <br/>
-                            <Link to="/products">Try browisng for products!</Link>
+                            <Link to="/products">Try browsing for products!</Link>
                         </p>
                      }
                 </div>

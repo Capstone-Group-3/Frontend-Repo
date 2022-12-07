@@ -1,8 +1,9 @@
 .userContainer{
     display: flex;
     flex-flow: row;
+    justify-content: space-evenly;
     overflow: wrap;
-    width: 26%;
+    width: ;
 }
 
 .editProductContainer{
@@ -15,18 +16,23 @@
     flex-direction: column;
     align-items: center;
     margin: 2px;
-    border: solid #535d66;
-    border-radius: 5px;
     width: 50%;
-    background-color: #282c30;
-    color: #992e37;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: #eaeaea;
+    margin-top: 1%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px black; 
     font-weight: bold;
-    min-width: 70px;
+    min-width: 100px;
 }
 
 .IndivUserChild{
     display: flex;
     align-items: center;
+}
+
+.userButton{
+    border-radius: 50%;
 }
 
 .adminIndivEdit{
@@ -35,25 +41,27 @@
     align-items: center;
     margin: 2px;
     width: 20%;
-    border: solid #535d66;
-    border-radius: 5px;
-    background-color: #282c30;
-    color: #992e37;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: #eaeaea;
+    margin-top: 1%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px black; 
     font-weight: bold;
     padding-bottom: 5px; 
     justify-content: space-around;
     min-width: 200px;
     max-width: 250px;
+    padding: 10px;
 }
 
 .titleHeader{
     display: flex;
     justify-content: center;
-    color: #992e37;
-    border: solid #535d66;
-    border-radius: 5px;
-    background-color: #282c30;
-    color: #992e37;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: #eaeaea;
+    margin-top: 1%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px black; 
 }
 
 .openButton{
@@ -64,4 +72,9 @@
 .makeProduct{
     display: flex;
     justify-content: center;
+}
+#login-container{
+    display: flex;
+    align-items: center;
+    flex-flow: column;
 }
