@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import "./css/nickprofile.css"
+
 
 const Profile = () => {
     const { usernameState } = useOutletContext();
@@ -51,32 +53,46 @@ const Profile = () => {
     
     }, [])
 
+    function handleClick(params) {
+        navigate(`/products/${params.productId}`);
+    }
+
 // placed orders should show: product name that you bought
 // need to do this for each one - both products and orders
     // have a find function within map function comparing productId to the id of the product
         // since there will only be one, a find is best instead of a filter
 
     return (
-        <div>
+        <div id="page-container">
             { currentToken && currentToken.length ?
             <div>
-                <form onSubmit={logOutUser}>
-                    <h1>username: {username}</h1>
-                    <button type="submit">Log Out</button>
-                </form>
+                <div id="profile-info-div">
+                    <b>Your account</b>
+                    <br />
+                    <form onSubmit={logOutUser}>
+                        <div id="user-form">
+                            <img src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png" alt="empty-profile-icon" height="50" width="50"/>
+                            <p>{username}</p>
+                        </div>
+                        <button id="logoutbtn" type="submit">Log Out</button>
+                    </form>
+                </div>
 
                 <br />
 
                 
-                <div>
+                <div id="order-container">
                     <h1>Your Orders: </h1>
                     {placedOrders && !!placedOrders.length ? 
 
                         placedOrders.map((eachOrder, idx) => {
                         const matchingProduct = products.find((element) => {
                         return eachOrder.productId == element.id })
-                        return <div key={idx}>
+                        return <div id="each-product-container" key={idx}>
+                            <img src={matchingProduct.image} alt="product-image" height="80" width="80"/>
                             <p>You ordered {eachOrder.quantity} <b>{matchingProduct.name}</b> for ${eachOrder.priceBoughtAt} each for a total of ${(eachOrder.quantity * eachOrder.priceBoughtAt).toFixed(2)} + shipping and handling</p>
+                            <button onClick={() => { handleClick(eachOrder) }} id="linkbtn">View this item</button>
+                            <button id="cartbtn">Add to cart again</button>
                         </div>
                     }) : <p>No orders to disply!
                             <br/>
