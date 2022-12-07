@@ -59,10 +59,11 @@ const ProductDetails = () => {
         <div>
             <div>
                 {  detailedSpecificProduct.isActive ? // extra check in case someone uses a route to go to an inactive product
-                    <div>
+                    <div class="details">
                         <p>{detailedSpecificProduct.name}</p>
                         <p>{detailedSpecificProduct.description}</p> 
-                        <p>{detailedSpecificProduct.price}</p>
+                        <p>${detailedSpecificProduct.price}</p>
+                        <img src={detailedSpecificProduct.image}alt="product-image" height="300" width="300"/>
 
                     {currentToken && !!currentToken.length ? 
                         <form onSubmit={addProductToCart}>Add to cart
@@ -81,7 +82,7 @@ const ProductDetails = () => {
                         <p>{successMessage}</p>
                     : null }
 
-                        <Link to="/products">Browse more products</Link>
+                       <br></br> <Link className="details-link"to="/products">Browse more products</Link>
                     </div>
                 : null }
             </div>
