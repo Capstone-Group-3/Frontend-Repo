@@ -94,3 +94,47 @@ button:active {
 #each-product-container > button {
     margin: 1rem;
 }
+
+/* HOMEPAGE STYLING */
+
+#intro-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10em;
+}
+
+.homepage-anchor {
+    text-decoration: none;
+    color: #c5c3c3;
+}
+
+.homepage-anchor:hover {
+    color: black;
+}
+
+.homepage-link-tag {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.homepage-link-tag:hover {
+    color: #c5c3c3;
+}
+
+#browsing-preview-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8em;
+}
+
+.bottom-images {
+    border: 2px solid rgb(200, 200, 200);
+    margin: 0.5em;
+    height: 500px;
+    width: 500px;
+}
