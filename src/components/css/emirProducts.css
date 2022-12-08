@@ -5,14 +5,13 @@
     background-color:#EBB553
 } */
 
-/* .Navbar{
-    background-color: #F19261;
+.Navbar{
     display:flex;
     justify-content: space-between;
     flex-direction: row;
     padding:1em;
     color-scheme: black;  
-} */
+}
  /* .navlink {
     background-color: #F19261;
     text-decoration: none;

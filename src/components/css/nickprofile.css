@@ -2,7 +2,7 @@ body {
     font-family: Helvetica, sans-serif;
     background-color: white;
     color: black;
-    font-size: x-large;
+    /* font-size: x-large; */
 }
 
 #page-container {
@@ -160,6 +160,7 @@ button:active {
 
 #nav-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     align-content: space-around;
@@ -181,7 +182,7 @@ button:active {
 #cartitem-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #address-form {
@@ -206,7 +207,7 @@ select {
     width: 9em;
 }
 
-input {
+.inputClass {
     width: 20em;
     padding: 12px;
     font-size: large;
