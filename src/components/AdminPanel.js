@@ -127,7 +127,7 @@ const [addQuantity, setAddQuantity]=useState(0)
                         <form className='adminIndivEdit'onSubmit={makeProduct}>
                             <label>Name</label>
                             <br/>
-                            <input value={addName} onChange={(e)=>handleInputChange(e, setAddName)}></input>
+                            <input className="x" value={addName} onChange={(e)=>handleInputChange(e, setAddName)}></input>
                             <br/>
                             <label>Description</label>
                             <br/>
