@@ -5,7 +5,7 @@ import "./css/nickprofile.css"
 
 const Homepage = () => {
     return (
-        <div>
+        <div className="bigletters">
             <div id="intro-container">
                 <div id="opening-message">
                     <p>Welcome to Threadline: a single page web application for buying and selling clothes.</p>

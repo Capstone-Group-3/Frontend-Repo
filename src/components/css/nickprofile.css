@@ -5,6 +5,10 @@ body {
     /* font-size: x-large; */
 }
 
+.bigletters{
+    font-size: x-large;
+}
+
 #page-container {
     display: flex;
     justify-content: center;
