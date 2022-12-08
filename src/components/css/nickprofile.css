@@ -125,6 +125,7 @@ button:active {
 .header:hover,
 .nav-link:hover {
     color: #c5c3c3;
+    text-decoration: none;
 }
 
 #browsing-preview-container {
