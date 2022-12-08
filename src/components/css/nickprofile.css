@@ -146,6 +146,8 @@ button:active {
     color: black;
 }
 
+/* NAVBAR STYLING */
+
 .nav-link {
     text-decoration: none;
     color: black;
@@ -166,17 +168,82 @@ button:active {
     margin-bottom: 1em;
 }
 
-/* #cart-page-container {
-    display: flex;
-    flex-direction: row;
-} */
+/* SHOP CART STYLING */
 
 #cart-container, #payment-container {
     display: flex;
     flex-direction: row;
+    align-content: space-around;
+    gap: 10px;
 }
 
 #cartitem-container {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 }
+
+#address-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#gap-div {
+    display: flex;
+    margin: 10em;
+}
+
+select {
+    width: 100px;
+    padding: 12px;
+    font-size: large;
+    font-weight: bold;
+}
+
+#remove-button {
+    width: 9em;
+}
+
+input {
+    width: 20em;
+    padding: 12px;
+    font-size: large;
+    font-weight: bold;
+}
+
+#small-input {
+    width: 5em;
+    padding: 12px;
+}
+
+.success-div {
+    display: flex;
+    justify-content: center;
+}
+
+/* LOGIN/REGISTER STYLING 
+expand border
+and add lock and key thing icon */
+
+
+/* duplicate this and make new class name for login/register with these parameters and a new id
+
+.adminIndivEdit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px;
+    width: 80%;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: #eaeaea;
+    margin-top: 1%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px black; 
+    font-weight: bold;
+    padding-bottom: 5px; 
+    justify-content: space-around;
+    min-width: 200px;
+    max-width: 450px;
+    padding: 10px;
+} */
