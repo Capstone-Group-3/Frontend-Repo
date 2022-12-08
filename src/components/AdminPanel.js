@@ -108,19 +108,19 @@ const [addQuantity, setAddQuantity]=useState(0)
             <div>
                 <h2 className="titleHeader">Give Administrative Privleges</h2>
                 <button className='openButton' onClick={(()=>setIsUsersToggled(!isUsersToggled))}>Show Users</button>
-                    <div className="userContainer">{isUsersToggled && regUsers.map((indivUser, idx)=>{
-                        return <form className="adminIndivUser" onSubmit={promoteUser} key={idx}>
-                            <p classname='IndivUserChild'>{indivUser.username}</p>
-                            
-                            <button classname='IndivUserChild userButton'type="submit" value={indivUser.name}>Promote</button>
-                        </form>
-                    })}</div>
+                <div className="userContainer">{isUsersToggled && regUsers.map((indivUser, idx)=>{
+                    return <form className="adminIndivUser" onSubmit={promoteUser} key={idx}>
+                        <p classname='IndivUserChild'>{indivUser.username}</p>
+                        
+                        <button classname='IndivUserChild userButton'type="submit" value={indivUser.name}>Promote</button>
+                    </form>
+                })}</div>
 
                 <h2 className="titleHeader">Edit Products</h2>
                 <button className='openButton' onClick={(()=>setIsProductsToggled(!isProductsToggled))}>Show Products</button>
-                    <div className="editProductContainer">{isProductsToggled && products.map((indivProduct, idx)=>{
-                        return <EditProduct key={idx} indivProduct={indivProduct}/>
-                    })}</div>
+                <div className="editProductContainer">{isProductsToggled && products.map((indivProduct, idx)=>{
+                    return <EditProduct key={idx} indivProduct={indivProduct}/>
+                })}</div>
                 <div>
                     <h2 className="titleHeader">Add a new Product</h2>
                     <div className='makeProduct'>
