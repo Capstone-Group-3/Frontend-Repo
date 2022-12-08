@@ -121,7 +121,9 @@ button:active {
     justify-content: center;
 }
 
-.homepage-link-tag:hover {
+.homepage-link-tag:hover,
+.header:hover,
+.nav-link:hover {
     color: #c5c3c3;
 }
 
@@ -137,4 +139,44 @@ button:active {
     margin: 0.5em;
     height: 500px;
     width: 500px;
+}
+
+.header {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 10px;
+    font-size: xx-large;
+}
+
+#nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-around;
+    background-color: rgb(236, 236, 236);
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-bottom: 1em;
+}
+
+/* #cart-page-container {
+    display: flex;
+    flex-direction: row;
+} */
+
+#cart-container, #payment-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#cartitem-container {
+    display: flex;
+    flex-direction: column;
 }

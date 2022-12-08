@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import "./css/nickprofile.css"
 
 const Shopcart = () => {
     // imported states
@@ -126,9 +127,10 @@ const Shopcart = () => {
     }
 
     return (
-        <div> { currentToken && !!currentToken.length ?
-            <div>
-                <h1>Your Cart</h1>
+        <div id="cart-page-container">
+            <h1>Your Cart</h1>
+             { currentToken && !!currentToken.length ?
+            <div id="cart-container">
                     {/* Maps through pending orders */}
 
                     {pendingOrders && !!pendingOrders.length ? pendingOrders.map((order, idx) => {
@@ -138,7 +140,7 @@ const Shopcart = () => {
                         // this is so a product name can be displayed
                         const matchingProduct = products.find((element) => {
                         return order.productId == element.id })
-                        return <div key={idx}>
+                        return <div id="cartitem-container" key={idx}>
                             <form onSubmit={changeProductQuantity}>
                                 <h3>{matchingProduct.name}</h3>
                                 <p>Price: ${order.priceBoughtAt}</p>
@@ -159,13 +161,13 @@ const Shopcart = () => {
                         </div>
                     }) : null}
 
-                <div>
+                {/* <div>
                     <br />
                     <p>Shipping and handling: <b>FREE!</b></p>
                     <b>Total: ${(totalNum).toFixed(2)}</b>
-                </div>
+                </div> */}
 
-                <div>
+                <div id="payment-container">
                     <form onSubmit={checkOutFunc}>Enter shipping info
                         <div id="address-form">
                             <input type="text" placeholder="Name" required/>
@@ -184,20 +186,25 @@ const Shopcart = () => {
                         <input type="tel" pattern="[0-9]{3}" maxLength="3" minLength="3" placeholder="CVV" required/>
                         <br/>
 
+                        <div>
+                            <br />
+                            <p>Shipping and handling: <b>FREE!</b></p>
+                            <b>Total: ${(totalNum).toFixed(2)}</b>
+                        </div>
+
                         <button type="submit">Checkout</button>
                     </form>
                 </div>
 
                 {newError && !!newError.length ?
-                    <div>
+                    <div id="shopcart-error-container">
                         <p>{newError}</p>
                     </div>
                 : null}
 
-                <Link to="/products">Browse more items</Link>
             </div> : 
 
-            <div>
+            <div id="shopcart-nologin-container">
                 <p>Looks like you don't have an account</p>
                 <Link to="/login">Log in or register here!</Link>
             </div>
