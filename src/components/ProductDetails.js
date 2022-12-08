@@ -56,10 +56,10 @@ const ProductDetails = () => {
     };
 
     return (
-        <div>
+        <div className="bigletters">
             <div>
                 {  detailedSpecificProduct.isActive ? // extra check in case someone uses a route to go to an inactive product
-                    <div class="details">
+                    <div className="details">
                         <p>{detailedSpecificProduct.name}</p>
                         <p>{detailedSpecificProduct.description}</p> 
                         <p>${detailedSpecificProduct.price}</p>

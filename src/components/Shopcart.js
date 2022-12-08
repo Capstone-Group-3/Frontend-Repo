@@ -127,7 +127,8 @@ const Shopcart = () => {
     }
 
     return (
-        <div id="cart-page-container">
+        <div id="cart-page-container"
+        >
             <h1>Your Cart</h1>
              { currentToken && !!currentToken.length ?
             <div id="cart-container">
