@@ -136,7 +136,7 @@ console.log("the order data: ", pendingOrders);
     return (
         <div>
             <div>
-                <h1 className="header">Marketplace App</h1>
+                <h1 className="header">Threadline</h1>
                 <Navbar pendingOrdersState={[pendingOrders, setPendingOrders]} isAdmin={isAdmin} loggedIn={loggedIn} currentToken={currentToken}/>
             </div>
             <Outlet context={pageContext}/>

@@ -8,7 +8,7 @@ const Homepage = () => {
         <div>
             <div id="intro-container">
                 <div id="opening-message">
-                    <p>Welcome to Marketplace App: a single page web application for buying and selling clothes.</p>
+                    <p>Welcome to Threadline: a single page web application for buying and selling clothes.</p>
                     <br/>
                     <p>Designed by <a className="homepage-anchor" href="https://github.com/StroudEN" target="_blank">Preston J Howell</a>, <a className="homepage-anchor" href="https://github.com/nickbloo" target="_blank">Nick Hargrove</a> and <a className="homepage-anchor" href="https://github.com/emir350" target="_blank">Emir Taletovic</a> using React.js, PostgreSQL and Express Router.</p>
                 </div>
