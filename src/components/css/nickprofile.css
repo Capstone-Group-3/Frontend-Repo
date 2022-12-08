@@ -121,8 +121,11 @@ button:active {
     justify-content: center;
 }
 
-.homepage-link-tag:hover {
+.homepage-link-tag:hover,
+.header:hover,
+.nav-link:hover {
     color: #c5c3c3;
+    text-decoration: none;
 }
 
 #browsing-preview-container {
@@ -137,4 +140,85 @@ button:active {
     margin: 0.5em;
     height: 500px;
     width: 500px;
+}
+
+.header {
+    text-decoration: none;
+    color: black;
+}
+
+/* NAVBAR STYLING */
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 10px;
+    font-size: xx-large;
+}
+
+#nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-around;
+    background-color: rgb(236, 236, 236);
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-bottom: 1em;
+}
+
+/* SHOP CART STYLING */
+
+#cart-container, #payment-container {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    gap: 10px;
+}
+
+#cartitem-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#address-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#gap-div {
+    display: flex;
+    margin: 10em;
+}
+
+select {
+    width: 100px;
+    padding: 12px;
+    font-size: large;
+    font-weight: bold;
+}
+
+#remove-button {
+    width: 9em;
+}
+
+input {
+    width: 20em;
+    padding: 12px;
+    font-size: large;
+    font-weight: bold;
+}
+
+#small-input {
+    width: 5em;
+    padding: 12px;
+}
+
+.success-div {
+    display: flex;
+    justify-content: center;
 }

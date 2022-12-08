@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import "./css/nickprofile.css"
 
 const Shopcart = () => {
     // imported states
@@ -126,9 +127,10 @@ const Shopcart = () => {
     }
 
     return (
-        <div> { currentToken && !!currentToken.length ?
-            <div>
-                <h1>Your Cart</h1>
+        <div id="cart-page-container">
+            <h1>Your Cart</h1>
+             { currentToken && !!currentToken.length ?
+            <div id="cart-container">
                     {/* Maps through pending orders */}
 
                     {pendingOrders && !!pendingOrders.length ? pendingOrders.map((order, idx) => {
@@ -138,34 +140,31 @@ const Shopcart = () => {
                         // this is so a product name can be displayed
                         const matchingProduct = products.find((element) => {
                         return order.productId == element.id })
-                        return <div key={idx}>
+                        return <div id="cartitem-container" key={idx}>
                             <form onSubmit={changeProductQuantity}>
                                 <h3>{matchingProduct.name}</h3>
                                 <p>Price: ${order.priceBoughtAt}</p>
                                 <p>Quantity: {order.quantity}</p>
-                                <select onChange={updateQuantity}>Change Quantity
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
-                                    <option value={3}>3</option>
-                                    <option value={4}>4</option>
-                                    <option value={5}>5</option>
-                                </select>
+                                <div id="selector-div">Change Quantity
+                                    <select onChange={updateQuantity}>
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                        <option value={5}>5</option>
+                                    </select>
+                                </div>
                                 <button value={order.productId} onClick={updateProductId} type="submit">Update</button>
                             </form>
                             <br/>
                             <form onSubmit={removeProductFromOrder}>
-                                <button type="submit" value={order.productId} onClick={updateProductId}>Remove item from cart</button>
+                                <button type="submit" id="remove-button" value={order.productId} onClick={updateProductId}>Remove item from cart</button>
                             </form>
                         </div>
                     }) : null}
 
-                <div>
-                    <br />
-                    <p>Shipping and handling: <b>FREE!</b></p>
-                    <b>Total: ${(totalNum).toFixed(2)}</b>
-                </div>
-
-                <div>
+                <div id="gap-div"></div>
+                <div id="payment-container">
                     <form onSubmit={checkOutFunc}>Enter shipping info
                         <div id="address-form">
                             <input type="text" placeholder="Name" required/>
@@ -180,24 +179,29 @@ const Shopcart = () => {
                         <label>Enter payment info</label>
                         <br />
                         <input type="tel" minLength="16" maxLength="16" placeholder="Card Number" required/>
-                        <input type="tel" maxLength="4" minLength="4" pattern="[0-9]{4}" placeholder="Expiration Date" required/>
-                        <input type="tel" pattern="[0-9]{3}" maxLength="3" minLength="3" placeholder="CVV" required/>
+                        <input type="tel" id="small-input" maxLength="4" minLength="4" pattern="[0-9]{4}" placeholder="Expiration" required/>
+                        <input type="tel" id="small-input" pattern="[0-9]{3}" maxLength="3" minLength="3" placeholder="CVV" required/>
                         <br/>
+
+                        <div>
+                            <br />
+                            <p>Shipping and handling: <b>FREE!</b></p>
+                            <b>Total: ${(totalNum).toFixed(2)}</b>
+                        </div>
 
                         <button type="submit">Checkout</button>
                     </form>
                 </div>
 
                 {newError && !!newError.length ?
-                    <div>
+                    <div id="shopcart-error-container">
                         <p>{newError}</p>
                     </div>
                 : null}
 
-                <Link to="/products">Browse more items</Link>
             </div> : 
 
-            <div>
+            <div id="shopcart-nologin-container">
                 <p>Looks like you don't have an account</p>
                 <Link to="/login">Log in or register here!</Link>
             </div>
