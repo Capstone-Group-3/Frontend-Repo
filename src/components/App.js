@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 
 const App = () => {
@@ -90,7 +90,6 @@ useEffect(() => {
                     userId: userId
                 })
             })
-            // extra error "type error" -- but still sets id
             const data = await response.json();
             setShopCartId(data.id)
         } catch (error) {
@@ -135,8 +134,10 @@ console.log("the order data: ", pendingOrders);
 
     return (
         <div>
-            <div>
-                <h1 className="header">Marketplace App</h1>
+
+            <div id="nav-container">
+                <h1><Link className="header" to="/">Threadline</Link></h1>
+
                 <Navbar pendingOrdersState={[pendingOrders, setPendingOrders]} isAdmin={isAdmin} loggedIn={loggedIn} currentToken={currentToken}/>
             </div>
             <Outlet context={pageContext}/>

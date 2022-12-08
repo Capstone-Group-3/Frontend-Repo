@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import "./css/nickprofile.css"
 
 const CheckoutSuccess = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const CheckoutSuccess = () => {
     }, [])
 
     return (
-        <div> 
+        <div className="success-div"> 
             { currentToken && currentToken.length ? 
             <div>
                 <h1>Successful Checkout!</h1>

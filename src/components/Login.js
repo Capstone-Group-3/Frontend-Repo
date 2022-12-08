@@ -52,7 +52,7 @@ const Login = () => {
 
     return (
         <div id="login-container">
-            <form className='adminIndivEdit' onSubmit={logInUser}>Log In
+            <form className='loginBox' onSubmit={logInUser}>Log In
                 <br />
                 <input type="text" value={username} onChange={updateUsername} placeholder="Your username" required/>
                 <br />
